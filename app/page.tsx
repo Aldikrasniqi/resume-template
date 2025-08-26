@@ -1,103 +1,149 @@
-import Image from "next/image";
+import { EducationRow } from '@/components/Educationrow'
+import { WorkExperienceRow } from '@/components/WorkExperienceRow'
+import { CommunityRow } from '@/components/CommunityRow'
+import { ProjectCard } from '@/components/ProjectCard'
+import { TextEffect } from '@/components/core/text-effect'
+import { resumeData } from '@/data/resume-data'
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+	return (
+		<div className="font-sans min-h-screen max-w-4xl mx-auto pt-12 flex flex-col gap-6 p-4 sm:p-8">
+			<div className="w-full flex flex-col items-center gap-3">
+				<img
+					src={resumeData.image}
+					alt="Profile"
+					className="w-24 h-24 rounded-2xl object-cover shadow-sm"
+				/>
+				<div className="text-center">
+					<h3 className="text-xl font-semibold text-[#1d1d1f]">
+						<TextEffect
+							per="char"
+							delay={0.3}
+							variants={{
+								container: {
+									hidden: { opacity: 0 },
+									visible: {
+										opacity: 1,
+										transition: { staggerChildren: 0.05 },
+									},
+								},
+								item: {
+									hidden: { opacity: 0, rotateX: 90, y: 10 },
+									visible: {
+										opacity: 1,
+										rotateX: 0,
+										y: 0,
+										transition: { duration: 0.2 },
+									},
+								},
+							}}
+						>
+							{resumeData.name}
+						</TextEffect>
+					</h3>
+					<p className="text-sm text-[#6e6e73] font-medium">
+						<TextEffect per="char" delay={1.0} preset="fade">
+							{resumeData.role}
+						</TextEffect>
+					</p>
+				</div>
+			</div>
+			<div className="space-y-5">
+				<div>
+					<h1 className="font-medium text-lg mb-3 text-[#1d1d1f]">
+						<TextEffect per="char" delay={1.5} preset="slide">
+							About
+						</TextEffect>
+					</h1>
+					<p className="text-sm leading-relaxed text-[#424245]">
+						{resumeData.description}
+					</p>
+				</div>
+				<div>
+					<h1 className="font-medium text-lg mb-3 text-[#1d1d1f]">
+						<TextEffect per="char" delay={2.0} preset="slide">
+							Work
+						</TextEffect>
+					</h1>
+					{resumeData.work.map((work) => (
+						<WorkExperienceRow
+							key={work.companyName}
+							companyName={work.companyName}
+							content={work.jobTitle}
+							year={work.dateRange}
+							details={work.bullets}
+						/>
+					))}
+				</div>
+				<div>
+					<h1 className="font-medium text-lg mb-3 text-[#1d1d1f]">
+						<TextEffect per="char" delay={2.5} preset="slide">
+							Education
+						</TextEffect>
+					</h1>
+					{resumeData.education.map((education) => (
+						<EducationRow
+							key={education.schoolName}
+							title={education.schoolName}
+							content={education.degree}
+							year={education.dateRange}
+						/>
+					))}
+				</div>
+				<div>
+					<h1 className="font-medium text-lg mb-3 text-[#1d1d1f]">
+						<TextEffect per="char" delay={3.0} preset="slide">
+							Community
+						</TextEffect>
+					</h1>
+					<div className="space-y-2">
+						{resumeData.community.map((involvement, i) => (
+							<CommunityRow
+								key={i}
+								organization={involvement.organization}
+								bullets={involvement.bullets}
+								dateRange={involvement.dateRange}
+							/>
+						))}
+					</div>
+				</div>
+				<div>
+					<h1 className="font-medium text-lg mb-3 text-[#1d1d1f]">
+						<TextEffect per="char" delay={3.5} preset="slide">
+							Skills
+						</TextEffect>
+					</h1>
+					<div className="flex flex-wrap gap-1.5">
+						{resumeData.skills.map((skill, i) => (
+							<div
+								key={i}
+								className="bg-[#f5f5f7] px-3 py-1 rounded text-xs text-[#1d1d1f]"
+							>
+								{skill}
+							</div>
+						))}
+					</div>
+				</div>
+				<div>
+					<h1 className="font-medium text-lg mb-3 text-[#1d1d1f]">
+						<TextEffect per="char" delay={4.0} preset="slide">
+							Projects
+						</TextEffect>
+					</h1>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+						{resumeData.projects.map((project, i) => (
+							<ProjectCard
+								key={i}
+								projectName={project.projectName}
+								description={project.description}
+								bullets={project.bullets}
+								dateRange={project.dateRange}
+								image={project.image}
+							/>
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+	)
 }
